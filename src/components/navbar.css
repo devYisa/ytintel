@@ -8,6 +8,7 @@
 .navbar{
   display:flex;
   flex-wrap: nowrap;
+  width: 100%;
   align-items:center;
   justify-content:space-between;
   padding:12px 24px;
@@ -37,6 +38,7 @@
   display:flex;
   gap: 2px;
   align-items:center;
+  width: 100%;
 }
 .nav-item{
   width: 70px;
