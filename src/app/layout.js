@@ -67,8 +67,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Diz ao Chrome que o site é puramente dark, forçando a aplicação da cor */}
+        <meta name="color-scheme" content="dark" />
+        
         <meta name="theme-color" content="#0f172a" />
-        {/* Tag canónica para evitar conteúdos duplicados se acederem por subdomínios da Vercel */}
         <link rel="canonical" href="https://ysintel.com" />
       </head>
       <body>{children}</body>
