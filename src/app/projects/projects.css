@@ -12,11 +12,10 @@
   padding: 20px;
   min-height: 100vh;
 }
-
-.wall-sections2 {
-  margin: 0 auto;
-  width: 96%;
+@media(max-width: 768px) {
+    .body2{ padding: 30px 20px; }
 }
+
 .header {
   padding: 1% 0;
   margin-bottom: 4%;
@@ -25,7 +24,7 @@
   color: #67e8f9;
   letter-spacing: 4px;
   font-size: 0.8rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .header h1 {
   font-size: clamp(2.5rem, 6vw, 5rem);
@@ -34,18 +33,21 @@
   letter-spacing: -4px;
   color: #ffffff;
 }
+@media(max-width: 968px) {
+  .header h1 { letter-spacing: -2;}
+}
 .header span {
   color: #67e8f9;
 }
 
 /* -3. Full Content */
 .conteudo {
-  display: grid;
-  grid-template-columns: 0.1fr 1fr;
+  display: flex;
+  padding: 0 3%;
   gap: 5%;
 }
-/* Left Content */
 .left-line {
+  flex: 0 0 8%;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -67,7 +69,11 @@
   justify-content: center;
   padding-bottom: 20px;
   border-bottom: 1px dashed rgba(103, 232, 249, 0.2);
-  margin-bottom: -10px;
+  margin-bottom: 10px;
+}
+@media(max-width: 968px) {
+  .conteudo { display: flex; }
+  .left-line, .line-header { width: 77px; }
 }
 .dot {
   width: 8px;
@@ -97,6 +103,10 @@
   width: 100%;
   justify-content: center;
 }
+@media(max-width: 968px) {
+  .line-title { font-size: 0.6rem; letter-spacing: 0; }
+  .line-lines { gap: 4px; margin: 0 auto;}
+}
 .line-lines span {
   height: 2px;
   background: #67e8f9;
@@ -106,17 +116,8 @@
 .line-lines span:nth-child(1) { width: 15px; }
 .line-lines span:nth-child(2) { width: 40px; opacity: 0.7; }
 .line-lines span:nth-child(3) { width: 25px; }
-.line-org {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #e2e8f0;
-}
-.line-year {
-  font-size: 0.75rem;
-  color: #67e8f9;
-  margin-top: 4px;
-  font-weight: 700;
-}
+.line-org { font-size: 0.85rem; font-weight: 600; color: #e2e8f0; }
+.line-year { font-size: 0.75rem; color: #67e8f9; margin-top: 4px; font-weight: 700; }
 .line-bars {
   display: flex;
   flex-direction: column;
@@ -125,11 +126,19 @@
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
+
 /* Right Content */
-.contents {
+.right-line {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 140px;
+  padding-top: 10px;
+}
+@media(max-width: 968px) {
+  .right-line {
+    padding-top: 7vh;
+  }
 }
 .project-row {
   display: flex;
@@ -291,89 +300,150 @@
 
 /* ACADEMIC PUBLICATIONS GRID */
 .prateleira-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 28px;
+  display: flex;
+  flex-wrap: wrap;       /* Permite que os livros quebrem para a linha de baixo */
+  gap: 40px 30px;        /* Espaçamento: 40px vertical (linha), 30px horizontal (entre livros) */
+  justify-content: center; /* Centraliza os livros se sobrarem na linha */
+  width: 100%;
 }
+
 .prat-card {
+  /* Flexbox inteligente: Base de 280px, mas cresce proporcionalmente até 1fr */
+  flex: 1 1 280px; 
+  max-width: 340px;      /* Evita que o livro fique excessivamente largo em telas grandes */
+  min-height: 420px;     /* Altura vertical para parecer um livro/documento em pé */
+  
   position: relative;
-  padding: 30px;
-  max-height: 400px;
-  border-radius: 28px;
+  padding: 35px 25px 25px 35px; /* Mais padding na esquerda simulando a encadernação */
+  border-radius: 4px 16px 16px 4px; /* Cantos esquerdos retos (lombada) e direitos arredondados (páginas) */
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: 0.5s ease;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  
+  /* Efeito de textura de capa de documento fosco */
+  background: linear-gradient(to right, rgba(15, 43, 58, 0.95) 0%, rgba(20, 55, 73, 0.85) 5%, rgba(25, 74, 96, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  
+  /* Bordas realistas: Linha esquerda forte (lombada) e bordas finas simulando papel */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 5px solid #67e8f9; /* A lombada do livro ganha a sua cor identidade */
+  
+  /* Sombra realista de livro projetado para fora da parede */
+  box-shadow: 
+    -5px 5px 0px rgba(0, 0, 0, 0.2),
+    -15px 20px 35px rgba(0, 0, 0, 0.4),
+    inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+    
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  justify-content: space-between; /* Empurra o conteúdo para cima e metadados para o rodapé do livro */
 }
+
+/* Efeito visual da dobra da folha da capa (marca de livro) */
 .prat-card::before {
   content: '';
   position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: rgba(103, 232, 249, 0.03);
+  top: 0;
+  left: 12px; /* Linha sutil paralela à lombada */
+  width: 1px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.07);
+  z-index: 2;
 }
+
+/* Animação de retirar o livro da prateleira ao passar o mouse */
 .prat-card:hover {
-  transform: translateY(-10px);
-  border-color: #67e8f9;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 30px 80px rgba(103, 232, 249, 0.15);
+  transform: translateY(-14px) rotate(-1deg); /* Levanta e inclina levemente o documento */
+  border-color: rgba(103, 232, 249, 0.4);
+  border-left-color: #22d3ee;
+  background: linear-gradient(to right, rgba(18, 51, 69, 0.98) 0%, rgba(24, 66, 88, 0.9) 5%, rgba(30, 88, 114, 0.95) 100%);
+  box-shadow: 
+    -8px 12px 0px rgba(0, 0, 0, 0.15),
+    -25px 35px 50px rgba(103, 232, 249, 0.18);
 }
+
+/* Estrutura interna do topo do documento */
 .prat-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.prat-top span {
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(103, 232, 249, 0.12);
-  color: #67e8f9;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.prat-top p {
-  color: #94a3b8;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-.publication-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 20px;
+.prat-top span {
+  padding: 5px 12px;
+  border-radius: 4px; /* Selo de documento técnico */
+  background: rgba(103, 232, 249, 0.08);
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  color: #67e8f9;
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.prat-top p {
+  color: #64748b;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Elemento de título interna do livro */
+.publication-card {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #14637b, #67e8f9);
-  color: white;
-  margin-bottom: 30px;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .publication-card h2 {
-  font-size: 1.4rem;
+  font-size: clamp(1.15rem, 1.3vw, 1.4rem);
   line-height: 1.4;
-  margin-bottom: 16px;
+  font-weight: 600;
   color: #ffffff;
+  margin-bottom: 12px;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Texto descritivo / Autores simulando parágrafo de sumário */
 .publication-card h4 {
   color: #94a3b8;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 0.88rem;
   line-height: 1.6;
 }
-.titulo{
+
+/* Limitador de linhas do título para não estourar o corpo do livro */
+.titulo {
   display: -webkit-box;
-  line-clamp: 3;
+  -webkit-line-clamp: 4; /* Permite até 4 linhas de título devido ao formato em pé */
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Ícone de publicação estilizado como sinete/selo no rodapé do livro */
+.publication-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(103, 232, 249, 0.05);
+  border: 1px solid rgba(103, 232, 249, 0.15);
+  color: #67e8f9;
+  margin-top: auto; /* Empurra o ícone para o fundo do card */
+  align-self: flex-start;
+}
+
+/* Ajuste Responsivo Fino para Celulares */
+@media(max-width: 480px) {
+  .prat-card {
+    max-width: 100%; /* Em telas microscópicas ele assume largura cheia de folha A4 */
+    min-height: 380px;
+    padding: 25px 20px 20px 25px;
+  }
 }
 /* NAVIGATION FOOTER */
 .back-home {
@@ -395,20 +465,9 @@
 }
 
 /* RESPONSIVE CONTROL */
-@media(max-width: 968px) {
 
-  .conteudo {
-    grid-template-columns: 23% 1fr;
-  }
-  .left-line {
-  max-width: 150px;
-}
-}
 
 @media(max-width: 768px) {
-    .body2{
-      padding: 30px 20px;
-  }
   .line-bars span{
     font-size: 20px;
   }

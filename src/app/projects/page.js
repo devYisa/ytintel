@@ -77,18 +77,13 @@ export default function ProjectsPage() {
       <Egyptian/>
       <Navbar />
       <section className='wall-sections2'>
-
         <div className="header">
-          <p className="mini-title"> HOME × PROJECT </p>
+          <p className="mini-title"> ARCHITECTURES × PROJECT </p>
           <h1> Digital Systems <br /> Crafted With <span>Structure</span> </h1>
         </div>
 
         <div className="conteudo">
-
-
           <div className="left-line">
-         
-            
             {meusProjetos.map((e) => (
               <div key={e.id} className='linhas'>
                 <div className="line-header">
@@ -102,19 +97,14 @@ export default function ProjectsPage() {
                 </div>
                 <p className="line-org">{e.organizacao}</p>
                 <p className="line-year">{e.ano}</p>
-                <p className="line-bars"> 
-                  {[...Array(28)].map((_, idx) => (
-                    <span key={idx}>|</span>
-                  ))} 
-                </p>
+                <p className="line-bars">  {[...Array(28)].map((_, idx) => ( <span key={idx}>|</span> ))} </p>
               </div> 
             ))}
           </div>
 
-          <div className="contents">
+          <div className="right-line">
             {meusProjetos.map((e, i) => (
               <div key={e.id} className={`project-row ${ i % 2 !== 0 ? 'reverse' : '' }`} >
-
                 <div className="project-info">
                   <div className="year-line"> <div className="line"></div> <p>{e.ano}</p> </div>
                   <h1>{e.nome}</h1>
@@ -126,7 +116,6 @@ export default function ProjectsPage() {
                     <div> <Globe2 size={17} /> {e.lingua} </div>
                     <button className="view-btn short"> View Project <ArrowUpRight size={18} /> </button>
                   </div>
-
                   <button className="view-btn wide"> View Project <ArrowUpRight size={18} /> </button>
                 </div>
 
@@ -138,17 +127,12 @@ export default function ProjectsPage() {
                     <h2>{e.nome}</h2>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div> ))}
           </div>
-
         </div>
 
         <section className="prateleira">
-          <div className="prateleira-head"> 
-            <BookOpen size={20} /> 
-            <div> <p className="mini">KNOWLEDGE ARCHIVE</p> <h1>Books & Publications</h1> </div>
-          </div>
+          <div className="prateleira-head"> <BookOpen size={20} />  <div> <p className="mini">KNOWLEDGE ARCHIVE</p> <h1>Books & Publications</h1> </div> </div>
           <div className="prateleira-grid">
             {minhasPublicacoes.map((e) => (<div key={e.id} className="prat-card" >
                 <div className="prat-top">

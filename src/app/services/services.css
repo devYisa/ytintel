@@ -240,13 +240,16 @@ font-size: clamp(1.2rem, 2vw, 1.45rem); /* Diminui se a tela diminuir */
 }
 .aim-frame {
   position: relative;
-  padding: 12px;
+  width: 210px;
+  height: 210px;
   background: #074e4b;
   border: 1px solid rgba(45, 212, 191, 0.3);
 }
 .devyisa-img {
-  width: 210px;
-  height: 210px;
+  height: 90%;
+  width: 90%;
+  margin: 10%;
+  transform: translate(-5%, -5%);
   object-fit: cover;
   filter: grayscale(20%) contrast(110%);
   border: 1px solid rgba(45, 212, 191, 0.4);

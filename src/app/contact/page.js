@@ -31,8 +31,8 @@ export default function Contact() {
 
   const profileMeta = {
     developerName: "devYisa",
-    enterprise: "isGrace (Intelligence for short)",
-    domain: "isgrace.com",
+    enterprise: "IFM (Intelligence for Management)",
+    domain: "ysintel.com",
     telephony: "+245 955959589",
     email: "iamyisas@gmail.com",
     location: "Zona 7, Bamdim, Bissau, Guinea-Bissau"
@@ -142,7 +142,7 @@ export default function Contact() {
             <div className="top bottom">
               {socialChannels.map((e, i) => ( 
                 <Link key={i} href={e.link} target="_blank" rel="noopener noreferrer" className="med-item"> 
-                  {e.icon} <span>{e.name}</span> <ArrowUpRight size={12} className="arrow" /> 
+                  {e.icon} <span>{e.name}</span> <ArrowUpRight size={12} className="arrowing" /> 
                 </Link> 
               ))}
             </div>

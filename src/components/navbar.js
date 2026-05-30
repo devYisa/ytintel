@@ -10,7 +10,7 @@ const navTabs = [
   ];
 
   export default function Navbar(){
-  const pathName = usePathname();
+    const pathName = usePathname();
 
     return(
         <nav className={`navbar ${pathName.slice(1)}`}>
